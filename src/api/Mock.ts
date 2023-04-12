@@ -7,5 +7,6 @@ export const products: ProductsResponse = {
     price: "$8.89",
     ratings: 48899,
     stars: 4,
+    images: new Array(5).fill("https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cgn/cgn01403/v/62.jpg")
   }),
 };

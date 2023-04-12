@@ -15,11 +15,15 @@ export default function Home() {
     <Layout>
       <main>
         <Carousel />
-        <div className="grid grid-rows-1 grid-flow-col gap-4">
+
+        <div className="pl-4 pt-4 font-bold text-lg">Recommended for you</div>
+        <div className="carousel carousel-center p-4 space-x-4">
           {productsQuery.data?.products.map((p) => {
             return <ProductCard {...p} />;
           })}
         </div>
+
+
       </main>
     </Layout>
   );

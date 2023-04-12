@@ -8,7 +8,7 @@ function ProductCard({ name, price, link, ratings, stars }: IProduct) {
   const router = useRouter();
 
   return (
-    <div className="card-normal w-64 bg-base-100 shadow-xl">
+    <div className="carousel-item flex flex-col w-64 bg-base-100 shadow-xl">
       <figure>
         <img
           src="https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cgn/cgn01403/v/62.jpg"
@@ -60,7 +60,7 @@ function ProductCard({ name, price, link, ratings, stars }: IProduct) {
             Buy Now
           </button>
           <button className="btn btn-accent btn-circle">
-            <BsCartPlus size={20}/>
+            <BsCartPlus size={20} className="fill-primary"/>
           </button>
         </div>
       </div>
