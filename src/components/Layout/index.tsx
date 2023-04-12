@@ -1,5 +1,4 @@
 import Header from "@components/Header";
-import { Html } from "next/document";
 import React from "react";
 
 interface ILayoutProps {
