@@ -18,7 +18,7 @@ function ProductPreview({ product }: IProductPreview) {
       <div className="carousel carousel-center justify-center space-x-4">
         {product?.images?.map((i) => {
           return (
-            <div className="carousel-item">
+            <div className="carousel-item" key={i}>
               <img
                 src={i}
                 alt="product preview"

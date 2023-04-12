@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Header from "@components/Header";
 import Carousel from "@components/Home/Carousel";
 import ProductCard from "@components/Product/Product";
 import { useQuery } from "react-query";
@@ -19,7 +16,7 @@ export default function Home() {
         <div className="pl-4 pt-4 font-bold text-lg">Recommended for you</div>
         <div className="carousel carousel-center p-4 space-x-4">
           {productsQuery.data?.products.map((p) => {
-            return <ProductCard {...p} />;
+            return <ProductCard key={p.id} {...p} />;
           })}
         </div>
 
