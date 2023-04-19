@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React from "react";
 import { IProduct } from "../../model/types";
 import { useRouter } from "next/navigation";
 import { BsCartPlus } from "react-icons/bs";
 
-function ProductCard({ name, price, link, ratings, stars }: IProduct) {
+function ProductCard({ name, price, link, ratings, id, stars }: IProduct) {
   const router = useRouter();
 
   return (
@@ -53,14 +53,13 @@ function ProductCard({ name, price, link, ratings, stars }: IProduct) {
           <button
             className="btn btn-sm btn-primary"
             onClick={() => {
-                console.log(link)
-              if (link) router.push(link);
+              router.push("/product/" + id)
             }}
           >
             Buy Now
           </button>
           <button className="btn btn-accent btn-circle">
-            <BsCartPlus size={20} className="fill-primary"/>
+            <BsCartPlus size={20} className="fill-primary" />
           </button>
         </div>
       </div>
