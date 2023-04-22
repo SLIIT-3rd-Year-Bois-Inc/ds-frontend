@@ -3,7 +3,7 @@ import ProductCard from "@components/Product/Product";
 import { useQuery } from "react-query";
 import { getProducts } from "../api/Rest";
 import { ProductsResponse } from "../model/types";
-import Layout from "@components/Layout";
+import Layout from "@components/Layout/MainLayout";
 
 export default function Home() {
   const productsQuery = useQuery<ProductsResponse>(["products"], getProducts);

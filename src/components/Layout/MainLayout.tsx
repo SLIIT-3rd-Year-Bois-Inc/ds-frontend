@@ -2,7 +2,7 @@ import Header from "@components/Header";
 import React from "react";
 
 interface ILayoutProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 function Layout({ children }: ILayoutProps) {

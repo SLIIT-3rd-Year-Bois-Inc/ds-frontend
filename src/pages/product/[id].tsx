@@ -1,4 +1,4 @@
-import Layout from "@components/Layout";
+import Layout from "@components/Layout/MainLayout";
 import ProductPreview from "@components/Product/ProductPreview";
 import React from "react";
 import { useQuery } from "react-query";
