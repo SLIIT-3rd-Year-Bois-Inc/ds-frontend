@@ -8,6 +8,7 @@ import Link from "next/link";
 import Ratings from "@components/Product/Ratings";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import ReviewContainer from "@components/Product/ReviewContainer";
+import Quantity from "@components/Product/Quanitity";
 
 function ProductPage() {
   const router = useRouter();
@@ -41,24 +42,13 @@ function ProductPage() {
               </div>
               <div className="flex items-end">
                 <div className="w-full flex justify-center items-center">
-                  <div className="form-control pr-2">
-                    <label className="input-group-sm flex items-center justify-center">
-                      <button className="btn btn-sm btn-circle rounded-r-lg">
-                        <AiOutlinePlus />
-                      </button>
-                      <input
-                        type="text"
-                        placeholder="10"
-                        size={2}
-                        className="input-sm input-bordered"
-                      />
-                      <button className="btn btn-sm btn-circle rounded-l-lg">
-                        <AiOutlineMinus />
-                      </button>
-                    </label>
-                  </div>
+                  {/* Quantity */}
+                  <Quantity />
                   <button className="btn btn-wide">Add to cart</button>
                 </div>
+              </div>
+              <div className="flex flex-row justify-center mt-2">
+                <button className="btn btn-wide">Buy now</button>
               </div>
             </div>
           </div>

@@ -1,11 +1,11 @@
 import Header from "@components/Header";
 import React from "react";
 
-interface ILayoutProps {
+interface IAdminLayoutProps {
   children: JSX.Element;
 }
 
-function Layout({ children }: ILayoutProps) {
+function AdminLayout({ children }: IAdminLayoutProps) {
   return (
     <>
       <div className="drawer drawer-end">
@@ -31,4 +31,4 @@ function Layout({ children }: ILayoutProps) {
   );
 }
 
-export default Layout;
+export default AdminLayout;
