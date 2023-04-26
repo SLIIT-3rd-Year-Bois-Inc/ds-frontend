@@ -10,7 +10,7 @@ function OrderPaymentSummery() {
   };
   
   return (
-    <div className="grid flex-grow grid-cols-2 grid-rows-[repeat(7,min-content)] justify-between prose p-4 bg-base-100 shadow-md">
+    <div className="grid grid-cols-2 grid-rows-[repeat(7,min-content)] justify-between prose p-4 bg-base-100 shadow-md">
       <h2 className="col-span-2">Summary</h2>
       <div>Total item cost</div>
       <div className="text-right">SG$ 4.01</div>

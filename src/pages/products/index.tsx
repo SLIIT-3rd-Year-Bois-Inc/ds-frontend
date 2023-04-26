@@ -6,19 +6,19 @@ import { useQuery } from "react-query";
 
 function CustomerProductView() {
   const productsQuery = useQuery<ProductsResponse>(["products"], getProducts);
-  const categories = {
-    "Minerals & Supplements": 123,
-    "Vitamins & Supplements": 123,
-    "Herbal Supplements": 123,
-    "Sports Supplements": 123,
-    "Weight Loss Supplements": 123,
-    "Beauty Supplements": 123,
-    "Health Supplements": 123,
-    "Dietary Supplements": 123,
+  const categories: { [key: string]: number } = {
+    "Minerals & Supplements": 13,
+    "Vitamins & Supplements": 4,
+    "Herbal Supplements": 5,
+    "Sports Supplements": 5,
+    "Weight Loss Supplements": 5,
+    "Beauty Supplements": 6,
+    "Health Supplements": 4,
+    "Dietary Supplements": 6,
   };
 
   return (
-    <div className="grid grid-cols-[30%_auto] grid-rows-[auto_auto]">
+    <div className="grid grid-cols-[calc(10%+11em)_auto] grid-rows-[auto_auto]">
       <div className="flex justify-center col-span-2 p-4">
         <div className="form-control">
           <div className="input-group">
@@ -52,10 +52,48 @@ function CustomerProductView() {
           return (
             <div className="flex items-center gap-2">
               <input type="checkbox" />
-              <span>{c}</span>
+              <span>
+                {c} ({categories[c]})
+              </span>
             </div>
           );
         })}
+
+        <div className="mt-4">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">From</span>
+            </label>
+            <label className="input-group input-xs">
+              <span>Price</span>
+              <input
+                type="text"
+                placeholder="10"
+                size={4}
+                className="input input-bordered input-xs"
+              />
+              <span>USD</span>
+            </label>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">To</span>
+            </label>
+            <label className="input-group input-xs">
+              <span>Price</span>
+              <input
+                type="text"
+                placeholder="10"
+                size={4}
+                className="input input-bordered input-xs"
+              />
+              <span>USD</span>
+            </label>
+            <div className="px-2 mt-3">
+              <button className="btn btn-xs">apply</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex flex-wrap gap-6">
         {productsQuery.data?.products.map((p) => {

@@ -3,6 +3,8 @@ import OrderPaymentSummery from "@components/Order/OrderSummery";
 import ShippingAddress from "@components/Order/ShippingAddress";
 import React, { useEffect, useState } from "react";
 import { getCart } from "../../../utils/cart";
+import OrderPaymentMethod from "@components/Order/PaymentMethod";
+import ShippingPaymentMethod from "@components/Order/ShippingMethod";
 
 function ConfirmOrder() {
   const [cart, setCart] = useState<{ id: string; qty: number }[]>([]);
@@ -13,10 +15,11 @@ function ConfirmOrder() {
   }, []);
 
   return (
-    <div className="flex flex-row px-4 pt-8 gap-4">
-      <div className="flex-[0.6]">
+    <div className="grid grid-cols-2 px-8 pt-8 gap-4 justify-evenly">
+      <div className="flex flex-col gap-3">
         <ShippingAddress className="mb-4" />
-
+        <OrderPaymentMethod />
+        <ShippingPaymentMethod />
         <div className="grid gap-2">
           {cart.map((product) => (
             <CartProduct
@@ -28,7 +31,7 @@ function ConfirmOrder() {
           ))}
         </div>
       </div>
-      <div className="flex-[0.4]">
+      <div className="ml-4">
         <OrderPaymentSummery />
       </div>
     </div>
