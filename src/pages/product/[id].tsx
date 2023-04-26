@@ -1,6 +1,6 @@
 import Layout from "@components/Layout/MainLayout";
 import ProductPreview from "@components/Product/ProductPreview";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getProductDetails } from "../../api/Rest";
 import { useRouter } from "next/router";
@@ -9,15 +9,44 @@ import Ratings from "@components/Product/Ratings";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import ReviewContainer from "@components/Product/ReviewContainer";
 import Quantity from "@components/Product/Quanitity";
+import { number } from "yup";
+import { getCart, saveCart } from "../../utils/cart";
 
 function ProductPage() {
   const router = useRouter();
-  const pid = router.query;
+  let { id } = router.query;
+  let pid = "";
+
+  if (Array.isArray(id)) {
+    pid = id[0];
+  } else {
+    pid = id || "";
+  }
+
+  const getProductQtyFromStorage = (id: string) => {
+    let cart = getCart();
+    return cart[id];
+  };
 
   const productDetailsQuery = useQuery(["product-details"], getProductDetails);
   const product = productDetailsQuery.data?.product;
+  const [qty, setQty] = useState(1);
 
-  console.log("PID " + pid);
+  const addToCart = (pid: string) => {
+    try {
+      let cart = getCart();
+
+      console.log(cart, typeof cart);
+      cart[pid] = qty;
+      saveCart(cart);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    setQty(getProductQtyFromStorage(pid) || 1);
+  }, [pid]);
   return (
     <Layout>
       <main>
@@ -41,10 +70,17 @@ function ProductPage() {
                 </div>
               </div>
               <div className="flex items-end">
-                <div className="w-full flex justify-center items-center">
+                <div className="w-full flex justify-center items-center gap-4">
                   {/* Quantity */}
-                  <Quantity />
-                  <button className="btn btn-wide">Add to cart</button>
+                  <Quantity quantity={qty} onQuantityChange={setQty} />
+                  <button
+                    className="btn btn-wide"
+                    onClick={() => {
+                      addToCart(pid);
+                    }}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
               <div className="flex flex-row justify-center mt-2">

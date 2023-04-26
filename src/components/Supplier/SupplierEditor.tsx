@@ -5,13 +5,13 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Config } from "../../config/endpoints";
 import axios from "axios";
 
-interface IOrderEditorProps {
+interface IProductEditorProps {
   onClose?: () => void;
-  newOrder: boolean;
+  newProduct: boolean;
   id: string;
 }
 
-interface IOrderForm {
+interface IProductForm {
   name: string;
   description: string;
   price: string | number;
@@ -21,20 +21,20 @@ interface IOrderForm {
   update?: boolean;
 }
 
-function OrderEditor({ onClose, newOrder, id }: IOrderEditorProps) {
+function ProductEditor({ onClose, newProduct, id }: IProductEditorProps) {
   const qc = useQueryClient();
 
-  const query = useQuery<IOrderForm>({
+  const query = useQuery<IProductForm>({
     queryKey: ["product", id],
     queryFn: async () => {
       let resp = await axios.get(`${Config.apiEndpoint}/items/${id}`);
       return resp.data;
     },
-    enabled: !newOrder,
+    enabled: !newProduct,
   });
 
   const mutation = useMutation({
-    mutationFn: async (productDetails: IOrderForm) => {
+    mutationFn: async (productDetails: IProductForm) => {
       if (productDetails.update) {
         let resp = await axios.patch(
           `${Config.apiEndpoint}/items/${id}`,
@@ -64,7 +64,7 @@ function OrderEditor({ onClose, newOrder, id }: IOrderEditorProps) {
       <Formik
         enableReinitialize={true}
         initialValues={
-          query.data && !newOrder
+          query.data && !newProduct
             ? query.data
             : {
                 name: "",
@@ -77,7 +77,7 @@ function OrderEditor({ onClose, newOrder, id }: IOrderEditorProps) {
         onSubmit={(values) => {
           mutation.mutate({
             ...values,
-            update: !newOrder,
+            update: !newProduct,
           });
         }}
         validationSchema={productSchema}
@@ -110,11 +110,11 @@ function OrderEditor({ onClose, newOrder, id }: IOrderEditorProps) {
                   <div className="flex-[0.6]">
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text">Order Name</span>
+                        <span className="label-text">Product Name</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="Order Name"
+                        placeholder="Product Name"
                         className="input input-bordered"
                         name="name"
                         value={values.name}
@@ -309,4 +309,4 @@ function OrderEditor({ onClose, newOrder, id }: IOrderEditorProps) {
   );
 }
 
-export default OrderEditor;
+export default ProductEditor;

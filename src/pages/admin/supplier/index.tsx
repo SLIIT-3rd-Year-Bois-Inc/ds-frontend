@@ -1,14 +1,14 @@
 import AdminLayout from "@components/Admin/Layout";
 import { Portal } from "@components/Portal/Portal";
+import ProductEditor from "@components/Product/ProductEditor";
+import ProductRow from "@components/Product/ProductRow";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
 import axios from "axios";
-import OrderRow from "@components/Order/OrderRow";
-import OrderEditor from "@components/Order/OrderEditor";
 
 function AdminProductsView() {
-  const [orderEditor, setOrderEditor] = useState<{
+  const [productEditor, setProductEditor] = useState<{
     id: string;
     open: boolean;
     newProduct: boolean;
@@ -21,16 +21,16 @@ function AdminProductsView() {
 
   const deletMutation = useMutation({
     mutationFn: async (id: string) => {
-      await axios.delete(`/orders/${id}`);
-      qc.invalidateQueries(["orders"]);
+      await axios.delete(`/items/${id}`);
+      qc.invalidateQueries(["products"]);
       return;
     },
   });
 
-  const orderQuery = useQuery(["orders"], getProducts);
+  const productQuery = useQuery(["products"], getProducts);
 
   const updateProduct = () => {
-    setOrderEditor((prev) => {
+    setProductEditor((prev) => {
       return { ...prev, open: false };
     });
   };
@@ -49,13 +49,13 @@ function AdminProductsView() {
             </tr>
           </thead>
           <tbody>
-            {orderQuery.data?.products.map((product) => {
+            {productQuery.data?.products.map((product) => {
               return (
-                <OrderRow
+                <ProductRow
                   key={product._id}
                   product={product}
                   onPressEdit={() => {
-                    setOrderEditor({
+                    setProductEditor({
                       id: product._id ?? "",
                       open: true,
                       newProduct: false,
@@ -72,17 +72,17 @@ function AdminProductsView() {
         <button
           className="btn btn-primary"
           onClick={() => {
-            setOrderEditor({ id: "", open: true, newProduct: true });
+            setProductEditor({ id: "", open: true, newProduct: true });
           }}
         >
           Add Product
         </button>
       </div>
-      <Portal open={orderEditor.open}>
-        <OrderEditor
-          id={orderEditor.id}
+      <Portal open={productEditor.open}>
+        <ProductEditor
+          id={productEditor.id}
           onClose={updateProduct}
-          newOrder={orderEditor.newProduct}
+          newProduct={productEditor.newProduct}
         />
       </Portal>
     </AdminLayout>
