@@ -6,33 +6,35 @@ import { IProduct } from "../../model/types";
 
 interface IProductRowProps {
   onPressEdit?: (id: string) => void;
+  onPressDelete?: (id: string) => void;
   product?: IProduct;
 }
 
-function ProductRow({ onPressEdit, product }: IProductRowProps) {
+function ProductRow({ onPressEdit, product, onPressDelete }: IProductRowProps) {
   return (
     <tr>
       <td>{product?.name}</td>
       <td>{product?.price}</td>
       <td className="truncate"></td>
-      <td className="flex gap-2">
+      <td className="flex gap-2 justify-end">
         <label
           onClick={() => {
-            onPressEdit && onPressEdit(product?.id || "");
+            onPressEdit && onPressEdit(product?._id || "");
           }}
           className="btn btn-md gap-2"
         >
           Edit
           <AiOutlineEdit size={18} />
         </label>
-        <button className="btn btn-error gap-2">
+        <button
+          onClick={() => {
+            onPressDelete && onPressDelete(product?._id || "");
+          }}
+          className="btn btn-error gap-2"
+        >
           Delete
           <AiOutlineEdit size={18} />
         </button>
-        <select className="select select-bordered">
-          <option>Placed</option>
-          <option>Greedo</option>
-        </select>
       </td>
     </tr>
   );

@@ -4,7 +4,7 @@ import { IProduct } from "../../model/types";
 import { useRouter } from "next/navigation";
 import { BsCartPlus } from "react-icons/bs";
 
-function ProductCard({ name, price, link, ratings, id, stars }: IProduct) {
+function ProductCard({ name, price, link, ratings, _id: id, stars }: IProduct) {
   const router = useRouter();
 
   return (

@@ -17,7 +17,7 @@ function ProductRow({ onPressEdit, product }: IProductRowProps) {
       <td className="flex gap-2">
         <label
           onClick={() => {
-            onPressEdit && onPressEdit(product?.id || "");
+            onPressEdit && onPressEdit(product?._id || "");
           }}
           className="btn btn-md gap-2"
         >

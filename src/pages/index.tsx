@@ -16,7 +16,7 @@ export default function Home() {
         <div className="pl-4 pt-4 font-bold text-lg">Recommended for you</div>
         <div className="carousel carousel-center p-4 space-x-4">
           {productsQuery.data?.products.map((p) => {
-            return <ProductCard key={p.id} {...p} />;
+            return <ProductCard key={p._id} {...p} />;
           })}
         </div>
 

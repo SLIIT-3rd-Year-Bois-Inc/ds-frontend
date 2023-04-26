@@ -3,8 +3,9 @@ import { Portal } from "@components/Portal/Portal";
 import ProductEditor from "@components/Product/ProductEditor";
 import ProductRow from "@components/Product/ProductRow";
 import React, { useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
+import axios from "axios";
 
 function AdminProductsView() {
   const [productEditor, setProductEditor] = useState<{
@@ -16,6 +17,16 @@ function AdminProductsView() {
     open: false,
     newProduct: false,
   });
+  const qc = useQueryClient();
+
+  const deletMutation = useMutation({
+    mutationFn: async (id: string) => {
+      await axios.delete(`/items/${id}`);
+      qc.invalidateQueries(["products"]);
+      return;
+    },
+  });
+
   const productQuery = useQuery(["products"], getProducts);
 
   const updateProduct = () => {
@@ -41,15 +52,16 @@ function AdminProductsView() {
             {productQuery.data?.products.map((product) => {
               return (
                 <ProductRow
-                  key={product.id}
+                  key={product._id}
                   product={product}
                   onPressEdit={() => {
                     setProductEditor({
-                      id: product.id ?? "",
+                      id: product._id ?? "",
                       open: true,
                       newProduct: false,
                     });
                   }}
+                  onPressDelete={deletMutation.mutate}
                 />
               );
             })}
@@ -68,6 +80,7 @@ function AdminProductsView() {
       </div>
       <Portal open={productEditor.open}>
         <ProductEditor
+          id={productEditor.id}
           onClose={updateProduct}
           newProduct={productEditor.newProduct}
         />
