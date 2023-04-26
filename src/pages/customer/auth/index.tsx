@@ -4,6 +4,7 @@ import { loginSchema } from "../../../schema/schema";
 import { Formik } from "formik";
 import { useMutation } from "react-query";
 import axios from "axios";
+import { Config } from "../../../config/endpoints";
 
 interface AuthDetails {
   email: string;
@@ -11,15 +12,20 @@ interface AuthDetails {
 }
 function CustomerAuth() {
   const mutation = useMutation({
-    mutationFn: (authDetails: AuthDetails) => {
-      return axios.post("/todos", authDetails);
+    mutationFn: async (authDetails: AuthDetails) => {
+      let resp = await axios.post(
+        `${Config.apiEndpoint}/auth/login`,
+        authDetails
+      );
+      console.log("resafsveraerreg", resp.status);
+      return resp.data;
     },
   });
 
   const authenticate = async ({ email, password }: AuthDetails) => {
     mutation.mutate({ email, password });
   };
-  
+
   return (
     <div className="w-full flex justify-center items-center">
       <div className="flex justify-center items-center flex-col mt-[calc(10em+5vh)]">

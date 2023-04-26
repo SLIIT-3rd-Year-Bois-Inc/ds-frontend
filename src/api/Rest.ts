@@ -1,10 +1,15 @@
+import axios from "axios";
 import { ProductDetailsResponse, ProductsResponse } from "../model/types";
 import { sleep } from "../utils/time";
 import { products } from "./Mock";
+import { Config } from "../config/endpoints";
 
 export async function getProducts(): Promise<ProductsResponse> {
-  await sleep(100);
-  return products;
+  console.log("res.data", "Dfadfaf");
+  let res = await axios.get(`${Config.apiEndpoint}/items`);
+  return {
+    products: res.data
+  };
 }
 
 

@@ -5,7 +5,11 @@ export interface IProduct {
     link?: string;
     ratings?: number;
     stars?: number;
-    images?: string[]
+    images?: string[];
+    description?: string;
+    seller_id?: string;
+    image_urls?: string[];
+    category?: string;
 }
 export interface ProductsResponse {
     products: IProduct[]

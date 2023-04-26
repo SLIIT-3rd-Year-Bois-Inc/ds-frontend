@@ -1,7 +1,6 @@
 import { Portal } from "@components/Portal/Portal";
 import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import ProductEditor from "./ProductEditor";
 import { IProduct } from "../../model/types";
 
 interface IProductRowProps {

@@ -29,6 +29,8 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9"
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/react-icons": "^3.0.0",
+    "@types/yup": "^0.32.0"
   }
 }
