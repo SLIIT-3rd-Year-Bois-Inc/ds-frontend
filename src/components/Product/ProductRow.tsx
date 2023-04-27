@@ -15,7 +15,7 @@ function ProductRow({ onPressEdit, product, onPressDelete }: IProductRowProps) {
     <tr>
       <td>{product?.name}</td>
       <td>{product?.price}</td>
-      <td className="truncate"></td>
+      <td className="truncate">{truncate(product?.description ?? "", 20)}</td>
       <td className="flex gap-2 justify-end">
         <label
           onClick={() => {
@@ -38,6 +38,10 @@ function ProductRow({ onPressEdit, product, onPressDelete }: IProductRowProps) {
       </td>
     </tr>
   );
+}
+
+function truncate(str: string, max: number) {
+  return str.length > max ? str.substr(0, max - 1) + "…" : str;
 }
 
 export default ProductRow;

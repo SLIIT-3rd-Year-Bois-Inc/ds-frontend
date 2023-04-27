@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
 import axios from "axios";
+import { Config } from "../../../config/endpoints";
 
 function AdminProductsView() {
   const [productEditor, setProductEditor] = useState<{
@@ -21,7 +22,7 @@ function AdminProductsView() {
 
   const deletMutation = useMutation({
     mutationFn: async (id: string) => {
-      await axios.delete(`/items/${id}`);
+      await axios.delete(`${Config.apiEndpoint}/items/${id}`);
       qc.invalidateQueries(["products"]);
       return;
     },
@@ -44,7 +45,7 @@ function AdminProductsView() {
             <tr>
               <th>Name</th>
               <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Description</th>
               <th></th>
             </tr>
           </thead>
