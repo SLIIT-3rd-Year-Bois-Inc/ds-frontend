@@ -1,15 +1,14 @@
 import AdminLayout from "@components/Admin/Layout";
 import { Portal } from "@components/Portal/Portal";
-import ProductEditor from "@components/Product/ProductEditor";
-import ProductRow from "@components/Product/ProductRow";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
 import axios from "axios";
-import { Config } from "../../../config/endpoints";
+import OrderRow from "@components/Order/OrderRow";
+import OrderEditor from "@components/Order/OrderEditor";
 
 function AdminProductsView() {
-  const [productEditor, setProductEditor] = useState<{
+  const [orderEditor, setOrderEditor] = useState<{
     id: string;
     open: boolean;
     newProduct: boolean;
@@ -22,16 +21,16 @@ function AdminProductsView() {
 
   const deletMutation = useMutation({
     mutationFn: async (id: string) => {
-      await axios.delete(`${Config.apiEndpoint}/items/${id}`);
-      qc.invalidateQueries(["products"]);
+      await axios.delete(`/orders/${id}`);
+      qc.invalidateQueries(["orders"]);
       return;
     },
   });
 
-  const productQuery = useQuery(["products"], getProducts);
+  const orderQuery = useQuery(["orders"], getProducts);
 
   const updateProduct = () => {
-    setProductEditor((prev) => {
+    setOrderEditor((prev) => {
       return { ...prev, open: false };
     });
   };
@@ -45,18 +44,18 @@ function AdminProductsView() {
             <tr>
               <th>Name</th>
               <th>Job</th>
-              <th>Description</th>
+              <th>Favorite Color</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {productQuery.data?.products.map((product) => {
+            {orderQuery.data?.products.map((product) => {
               return (
-                <ProductRow
+                <OrderRow
                   key={product._id}
-                  product={product}
+                  order={product}
                   onPressEdit={() => {
-                    setProductEditor({
+                    setOrderEditor({
                       id: product._id ?? "",
                       open: true,
                       newProduct: false,
@@ -73,17 +72,17 @@ function AdminProductsView() {
         <button
           className="btn btn-primary"
           onClick={() => {
-            setProductEditor({ id: "", open: true, newProduct: true });
+            setOrderEditor({ id: "", open: true, newProduct: true });
           }}
         >
           Add Product
         </button>
       </div>
-      <Portal open={productEditor.open}>
-        <ProductEditor
-          id={productEditor.id}
+      <Portal open={orderEditor.open}>
+        <OrderEditor
+          id={orderEditor.id}
           onClose={updateProduct}
-          newProduct={productEditor.newProduct}
+          newOrder={orderEditor.newProduct}
         />
       </Portal>
     </AdminLayout>

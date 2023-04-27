@@ -1,12 +1,11 @@
 import AdminLayout from "@components/Admin/Layout";
 import { Portal } from "@components/Portal/Portal";
 import ProductEditor from "@components/Product/ProductEditor";
-import ProductRow from "@components/Product/ProductRow";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
 import axios from "axios";
-import { Config } from "../../../config/endpoints";
+import SellerRow from "@components/Supplier/SuppliertRow";
 
 function AdminProductsView() {
   const [productEditor, setProductEditor] = useState<{
@@ -22,7 +21,7 @@ function AdminProductsView() {
 
   const deletMutation = useMutation({
     mutationFn: async (id: string) => {
-      await axios.delete(`${Config.apiEndpoint}/items/${id}`);
+      await axios.delete(`/items/${id}`);
       qc.invalidateQueries(["products"]);
       return;
     },
@@ -45,14 +44,14 @@ function AdminProductsView() {
             <tr>
               <th>Name</th>
               <th>Job</th>
-              <th>Description</th>
+              <th>Favorite Color</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {productQuery.data?.products.map((product) => {
               return (
-                <ProductRow
+                <SellerRow
                   key={product._id}
                   product={product}
                   onPressEdit={() => {

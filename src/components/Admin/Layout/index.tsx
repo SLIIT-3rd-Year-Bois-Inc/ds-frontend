@@ -1,11 +1,13 @@
 import Header from "@components/Header";
+import ProductEditor from "@components/Product/ProductEditor";
 import React from "react";
 
 interface IAdminLayoutProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 function AdminLayout({ children }: IAdminLayoutProps) {
+
   return (
     <>
       <div className="drawer drawer-end">

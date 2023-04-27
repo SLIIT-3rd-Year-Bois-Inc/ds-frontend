@@ -1,11 +1,15 @@
 export interface IProduct {
-    id?: string;
+    _id?: string;
     name?: string;
     price?: string;
     link?: string;
     ratings?: number;
     stars?: number;
-    images?: string[]
+    images?: string[];
+    description?: string;
+    seller_id?: string;
+    image_urls?: string[];
+    category?: string;
 }
 export interface ProductsResponse {
     products: IProduct[]
@@ -13,4 +17,13 @@ export interface ProductsResponse {
 
 export interface ProductDetailsResponse {
     product: IProduct;
+}
+
+export interface ISeller {
+    _id?: string;
+    name?: string;
+    email?: string;
+    store_name?: string;
+    address?: string;
+    rating?: string;
 }

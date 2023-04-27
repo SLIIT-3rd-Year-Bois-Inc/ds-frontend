@@ -1,21 +1,21 @@
 import { Portal } from "@components/Portal/Portal";
 import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import ProductEditor from "./ProductEditor";
-import { IProduct } from "../../model/types";
+import SellerEditor from "./SupplierEditor";
+import { ISeller } from "../../model/types";
 
-interface IProductRowProps {
+interface ISellerRowProps {
   onPressEdit?: (id: string) => void;
   onPressDelete?: (id: string) => void;
-  product?: IProduct;
+  product?: ISeller;
 }
 
-function ProductRow({ onPressEdit, product, onPressDelete }: IProductRowProps) {
+function SellerRow({ onPressEdit, product, onPressDelete }: ISellerRowProps) {
   return (
     <tr>
       <td>{product?.name}</td>
-      <td>{product?.price}</td>
-      <td className="truncate">{truncate(product?.description ?? "", 20)}</td>
+      <td>{product?.store_name}</td>
+      <td className="truncate"></td>
       <td className="flex gap-2 justify-end">
         <label
           onClick={() => {
@@ -40,8 +40,4 @@ function ProductRow({ onPressEdit, product, onPressDelete }: IProductRowProps) {
   );
 }
 
-function truncate(str: string, max: number) {
-  return str.length > max ? str.substr(0, max - 1) + "…" : str;
-}
-
-export default ProductRow;
+export default SellerRow;
