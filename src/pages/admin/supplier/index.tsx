@@ -1,11 +1,11 @@
 import AdminLayout from "@components/Admin/Layout";
 import { Portal } from "@components/Portal/Portal";
 import ProductEditor from "@components/Product/ProductEditor";
-import ProductRow from "@components/Product/ProductRow";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../../api/Rest";
 import axios from "axios";
+import SellerRow from "@components/Supplier/SuppliertRow";
 
 function AdminProductsView() {
   const [productEditor, setProductEditor] = useState<{
@@ -51,7 +51,7 @@ function AdminProductsView() {
           <tbody>
             {productQuery.data?.products.map((product) => {
               return (
-                <ProductRow
+                <SellerRow
                   key={product._id}
                   product={product}
                   onPressEdit={() => {

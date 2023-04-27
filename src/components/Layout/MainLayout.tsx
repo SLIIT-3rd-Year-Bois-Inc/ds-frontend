@@ -35,8 +35,9 @@ function Layout({ children }: ILayoutProps) {
             {/* <!-- Sidebar content here --> */}
             <div className="p-2 text-lg font-bold">Your Cart</div>
             <div>
-              {cart.map((product) => (
+              {cart.map((product, i) => (
                 <CartProduct
+                  key={i}
                   seller="SinoVoip Co.,Limited Banana PI"
                   name="Banana Pi BPI-M2 Berry Allwinner A40i Quad-core"
                   price={32.99}

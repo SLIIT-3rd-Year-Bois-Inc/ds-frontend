@@ -7,7 +7,7 @@ function PaymentMethod() {
       Select Payment Method
       <div className="flex gap-2">
         {new Array(4).fill(0).map((_, i) => (
-          <div className="w-[6em] p-2 border-accent border-2 rounded-lg">
+          <div key={i} className="w-[6em] p-2 border-accent border-2 rounded-lg">
             <FaCcVisa/>
             <div className="text-sm">Ending with **23</div>
           </div>

@@ -48,9 +48,9 @@ function CustomerProductView() {
         </div>
       </div>
       <div className="px-8">
-        {Object.keys(categories).map((c) => {
+        {Object.keys(categories).map((c, i) => {
           return (
-            <div className="flex items-center gap-2">
+            <div key={i} className="flex items-center gap-2">
               <input type="checkbox" />
               <span>
                 {c} ({categories[c]})

@@ -21,8 +21,9 @@ function ConfirmOrder() {
         <OrderPaymentMethod />
         <ShippingPaymentMethod />
         <div className="grid gap-2">
-          {cart.map((product) => (
+          {cart.map((product, i) => (
             <CartProduct
+              key={i}
               seller="SinoVoip Co.,Limited Banana PI"
               name="Banana Pi BPI-M2 Berry Allwinner A40i Quad-core"
               price={32.99}

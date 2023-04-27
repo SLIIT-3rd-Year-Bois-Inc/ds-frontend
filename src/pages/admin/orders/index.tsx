@@ -53,7 +53,7 @@ function AdminProductsView() {
               return (
                 <OrderRow
                   key={product._id}
-                  product={product}
+                  order={product}
                   onPressEdit={() => {
                     setOrderEditor({
                       id: product._id ?? "",

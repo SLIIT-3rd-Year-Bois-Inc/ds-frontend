@@ -24,7 +24,7 @@ function OrderPaymentSummery() {
         <button className="btn btn-wide mt-6" onClick={pay}>Pay now</button>
       </div>
       <p className="text-center text-sm w-full col-span-2">
-        Upon clicking 'Pay Now', I confirm I have read and acknowledged all
+        Upon clicking &apos;Pay Now&apos;, I confirm I have read and acknowledged all
         terms and policies.
       </p>
       <div className="col-span-2">

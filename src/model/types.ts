@@ -18,3 +18,12 @@ export interface ProductsResponse {
 export interface ProductDetailsResponse {
     product: IProduct;
 }
+
+export interface ISeller {
+    _id?: string;
+    name?: string;
+    email?: string;
+    store_name?: string;
+    address?: string;
+    rating?: string;
+}
