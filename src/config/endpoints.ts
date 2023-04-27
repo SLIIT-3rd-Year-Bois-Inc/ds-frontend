@@ -1,3 +1,3 @@
 export const Config = {
-    apiEndpoint: "http://api.dehemi.com"
+    apiEndpoint: "https://api.dehemi.com"
 }
