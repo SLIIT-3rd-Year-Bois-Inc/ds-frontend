@@ -44,7 +44,7 @@ function AdminProductsView() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Job</th>
+              <th>Price</th>
               <th>Description</th>
               <th></th>
             </tr>

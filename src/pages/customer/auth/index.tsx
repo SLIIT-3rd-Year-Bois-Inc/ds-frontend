@@ -28,9 +28,9 @@ function CustomerAuth() {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="flex justify-center items-center flex-col mt-[calc(10em+5vh)]">
-        <div className="prose mb-4">
-          <h1>Herbal Haven Login</h1>
+      <div className="grid grid-rows-[auto_auto] mt-[calc(10em+5vh)] p-6 w-96 bg-base-200 rounded-lg">
+        <div className="prose mb-4 text-center">
+          <h2>Herbal Haven Login</h2>
         </div>
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -51,8 +51,8 @@ function CustomerAuth() {
               handleReset,
             } = props;
             return (
-              <form className="w-full" onSubmit={handleSubmit}>
-                <div className="form-control w-full max-w-xs">
+              <form onSubmit={handleSubmit}>
+                <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Username</span>
                   </label>
@@ -60,7 +60,7 @@ function CustomerAuth() {
                     type="text"
                     name="email"
                     placeholder="Type here"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full"
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -69,7 +69,7 @@ function CustomerAuth() {
                     <div className="input-feedback">{errors.email}</div>
                   )}
                 </div>
-                <div className="form-control w-full max-w-xs">
+                <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
@@ -77,7 +77,7 @@ function CustomerAuth() {
                     type="password"
                     name="password"
                     placeholder="Type here"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full"
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -98,7 +98,7 @@ function CustomerAuth() {
           }}
         </Formik>
 
-        <div className="prose">
+        <div className="prose text-center">
           <Link href="/customer/forgot">Forgot password?</Link>
         </div>
       </div>
